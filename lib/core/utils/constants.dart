@@ -4,3 +4,6 @@ const kPrimaryColor = Color(0xff100B20);
 const kTranstionDuration = Duration(milliseconds: 250);
 const kGtSectraFine = 'GT Sectra Fine';
 const kBaseUrl = "https://www.googleapis.com/books/v1/";
+const kFeaturedBox = 'FeaturedBox';
+
+const kNewestBox = 'NewestBox';
