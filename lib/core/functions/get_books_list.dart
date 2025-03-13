@@ -1,9 +1,13 @@
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 
 List<BookEntity> getBooksList(Map<String, dynamic> data) {
   List<BookEntity> books = [];
-  for (var element in data["items"]) {
-    books.add(element);
+
+  if (data["items"] != null) {
+    for (var element in data["items"]) {
+      books.add(BookModel.fromJson(element));
+    }
   }
   return books;
 }
