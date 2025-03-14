@@ -7,6 +7,14 @@ final class FeaturedbookcubitInitial extends FeaturedbookcubitState {}
 
 final class FeaturedbookcubitLoading extends FeaturedbookcubitState {}
 
+final class FeaturedbookcubitPaginationLoading extends FeaturedbookcubitState {}
+
+final class FeaturedbookcubitPaginationFailure extends FeaturedbookcubitState {
+  final String errorMessage;
+
+  FeaturedbookcubitPaginationFailure({required this.errorMessage});
+}
+
 final class FeaturedbookcubitFailure extends FeaturedbookcubitState {
   final String errorMessage;
 
