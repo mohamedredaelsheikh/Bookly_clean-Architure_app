@@ -8,9 +8,9 @@ final class NewestBooksCubitInitial extends NewestBooksCubitState {}
 final class NewestBooksCubitLoading extends NewestBooksCubitState {}
 
 final class NewestBooksCubitFailure extends NewestBooksCubitState {
-  final String errormessage;
+  final String errorMessage;
 
-  NewestBooksCubitFailure({required this.errormessage});
+  NewestBooksCubitFailure({required this.errorMessage});
 }
 
 final class NewestBooksCubitSuccess extends NewestBooksCubitState {
