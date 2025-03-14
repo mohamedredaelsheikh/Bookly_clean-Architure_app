@@ -1,7 +1,8 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly/Features/home/presentation/views/widgets/book_list_view_pagination_loading.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/featured_list_view.dart';
 import 'package:bookly/core/functions/build_error_snack_bar.dart';
-import 'package:bookly/core/utils/circural_progress_indecator.dart';
+import 'package:bookly/core/widgets/custom_fade_animation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,7 +43,8 @@ class _FeaturedBooksListBlocConsumerState
         } else if (state is FeaturedbookcubitFailure) {
           return Text(state.errorMessage);
         } else {
-          return CustomCircularProgressIndecator();
+          return CustomFadeAnimationWidget(
+              child: BookListViewPaginationLoading());
         }
       },
     );
