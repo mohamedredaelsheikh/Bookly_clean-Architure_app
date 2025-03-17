@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
-import 'package:bookly/Features/home/presentation/views/widgets/book_list_view_pagination_loading.dart';
+import 'package:bookly/Features/home/presentation/views/widgets/featured_book_list_view_pagination_loading.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/featured_list_view.dart';
 import 'package:bookly/core/functions/build_error_snack_bar.dart';
-import 'package:bookly/core/widgets/custom_fade_animation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,14 +22,20 @@ class FeaturedBooksListBlocConsumer extends StatefulWidget {
 class _FeaturedBooksListBlocConsumerState
     extends State<FeaturedBooksListBlocConsumer> {
   List<BookEntity> books = [];
-
+  @override
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedbookcubitCubit, FeaturedbookcubitState>(
       listener: (context, state) {
         if (state is FeaturedbookcubitSuccess) {
-          books.addAll(state.books);
-        } else if (state is FeaturedbookcubitPaginationFailure) {
+          log("Success: Adding ${state.books.length} books to existing ${books.length}");
+          if (mounted) {
+            setState(() {
+              books.addAll(state.books.where(
+                  (newBook) => !books.any((b) => b.bookId == newBook.bookId)));
+            });
+          }
+        } else if (state is FeaturedbookcubitFailure) {
           ScaffoldMessenger.of(context)
               .showSnackBar(buildErrorWidget(state.errorMessage));
         }
@@ -43,8 +50,7 @@ class _FeaturedBooksListBlocConsumerState
         } else if (state is FeaturedbookcubitFailure) {
           return Text(state.errorMessage);
         } else {
-          return CustomFadeAnimationWidget(
-              child: BookListViewPaginationLoading());
+          return FeaturedBookListViewPaginationLoading();
         }
       },
     );

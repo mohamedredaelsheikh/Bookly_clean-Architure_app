@@ -19,15 +19,22 @@ class _CustomFadeAnimationWidgetState extends State<CustomFadeAnimationWidget>
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
     );
     animation = Tween<double>(begin: 0.2, end: .8).animate(animationController);
-    setState(() {
-      animationController.addListener(() {
+
+    animationController.addListener(() {
+      if (mounted) {
         setState(() {});
-      });
+      }
     });
     animationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose(); // وقّف الـ Controller لما الـ Widget يتشال
+    super.dispose();
   }
 
   @override

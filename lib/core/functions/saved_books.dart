@@ -3,5 +3,10 @@ import 'package:hive/hive.dart';
 
 void savedBooks(List<BookEntity> books, {required String boxname}) {
   var box = Hive.box<BookEntity>(boxname);
-  box.addAll(books);
+
+  for (var book in books) {
+    if (!box.values.any((existingBook) => existingBook.bookId == book.bookId)) {
+      box.add(book);
+    }
+  }
 }
