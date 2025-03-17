@@ -35,7 +35,7 @@ class _FeaturedBooksListBlocConsumerState
                   (newBook) => !books.any((b) => b.bookId == newBook.bookId)));
             });
           }
-        } else if (state is FeaturedbookcubitFailure) {
+        } else if (state is FeaturedbookcubitPaginationFailure) {
           ScaffoldMessenger.of(context)
               .showSnackBar(buildErrorWidget(state.errorMessage));
         }

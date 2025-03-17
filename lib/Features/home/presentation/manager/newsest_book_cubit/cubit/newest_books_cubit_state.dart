@@ -7,6 +7,14 @@ final class NewestBooksCubitInitial extends NewestBooksCubitState {}
 
 final class NewestBooksCubitLoading extends NewestBooksCubitState {}
 
+final class NewestBooksCubitPaginationLoading extends NewestBooksCubitState {}
+
+final class NewestBooksCubitPaginationFailure extends NewestBooksCubitState {
+  final String errorMessage;
+
+  NewestBooksCubitPaginationFailure({required this.errorMessage});
+}
+
 final class NewestBooksCubitFailure extends NewestBooksCubitState {
   final String errorMessage;
 

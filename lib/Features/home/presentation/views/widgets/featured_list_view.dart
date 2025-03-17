@@ -4,6 +4,7 @@ import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/Features/home/presentation/manager/featured_book_cubit/cubit/featuredbookcubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'custom_book_item.dart';
 
@@ -63,9 +64,12 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           if (index == widget.books.length && isLoading) {
-            return const Padding(
+            return Padding(
               padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Center(child: CircularProgressIndicator()),
+              child: SpinKitThreeBounce(
+                color: Colors.blue,
+                size: 24.0,
+              ),
             );
           }
           return Padding(

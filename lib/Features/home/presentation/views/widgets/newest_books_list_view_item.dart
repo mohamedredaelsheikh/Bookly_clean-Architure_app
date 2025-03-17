@@ -19,7 +19,7 @@ class NewestBookListViewItem extends StatelessWidget {
         GoRouter.of(context).push(AppRouter.kBookDetailsView, extra: book);
       },
       child: SizedBox(
-        height: 125,
+        height: 150,
         child: Row(
           children: [
             CustomBookImage(
@@ -28,7 +28,8 @@ class NewestBookListViewItem extends StatelessWidget {
             const SizedBox(
               width: 30,
             ),
-            Expanded(
+            Flexible(
+              fit: FlexFit.loose,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
